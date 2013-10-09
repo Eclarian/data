@@ -314,6 +314,7 @@ DS.Model = Ember.Object.extend(Ember.Evented, {
       Ember.mixin(this._data, this._inFlightAttributes);
     }
 
+    this._attributes = {};
     this._inFlightAttributes = {};
 
     this.send('didCommit');
@@ -467,7 +468,6 @@ DS.Model = Ember.Object.extend(Ember.Evented, {
 
     this.get('store').scheduleSave(this, resolver);
     this._inFlightAttributes = this._attributes;
-    this._attributes = {};
 
     return DS.PromiseObject.create({ promise: resolver.promise });
   },
